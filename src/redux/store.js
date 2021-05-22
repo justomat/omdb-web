@@ -5,6 +5,7 @@ import axios from "../libs/axios";
 
 const { requestsReducer, requestsMiddleware } = handleRequests({
   driver: createDriver(axios),
+  cache: true,
 });
 
 const root = combineReducers({
