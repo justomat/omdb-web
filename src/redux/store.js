@@ -1,5 +1,14 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import { handleRequests } from "@redux-requests/core";
+import { createDriver } from "@redux-requests/axios";
+import axios from "axios";
 
-const root = combineReducers({});
+const { requestsReducer, requestsMiddleware } = handleRequests({
+  driver: createDriver(axios),
+});
 
-export default createStore(root);
+const root = combineReducers({
+  requests: requestsReducer,
+});
+
+export default createStore(root, applyMiddleware(...requestsMiddleware));
