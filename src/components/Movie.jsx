@@ -10,7 +10,9 @@ export function Movie({ data }) {
       }}
     >
       <h3>
-        {data.Title} ({data.Year})
+        <a href={`/movie?id=${data.imdbID}`}>
+          {data.Title} ({data.Year})
+        </a>
       </h3>
 
       <Image src={data.Poster} width={150} height={225} />
