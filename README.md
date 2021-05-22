@@ -7,4 +7,9 @@
    4. show poster popup when result's image is clicked
    5. display single move details when result is clicked
 
-# 
+# How to run locally
+
+```bash
+yarn dev
+# open http://localhost:3000
+```
