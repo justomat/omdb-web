@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
 import { useQuery } from "@redux-requests/react";
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { searchMovies, SEARCH_MOVIES } from "../redux/action";
 import { Movie } from "./Movie";
+import PosterModal from "./PosterModal";
 
 function useInfiniteScroll(ref, handleNextPage) {
   useEffect(() => {
@@ -36,18 +38,19 @@ export default function MovieList({ keyword, page = 1 }) {
 
   useInfiniteScroll(loader, () => {});
 
+  const { selectedPoster } = useSelector((state) => state.modal);
+
   if (error) return error;
   if (loading || data == null) return "Loading...";
   return (
-    <div
-      style={{
-        flex: 1,
-        flexDirection: "column",
-      }}
-    >
-      {data.Search.map((m) => (
-        <Movie data={m} />
-      ))}
-    </div>
+    <>
+      <PosterModal selectedPoster={selectedPoster} />
+
+      <div>
+        {data.Search.map((m) => (
+          <Movie key={m.imdbID} data={m} />
+        ))}
+      </div>
+    </>
   );
 }

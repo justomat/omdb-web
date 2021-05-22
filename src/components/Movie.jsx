@@ -1,6 +1,15 @@
 import Image from "next/image";
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../redux/action";
 
 export function Movie({ data }) {
+  const dispatch = useDispatch();
+  const handleImageClick = useCallback(() => {
+    const action = openModal(data.Poster);
+    dispatch(action);
+  }, [dispatch, data]);
+
   return (
     <div
       style={{
@@ -15,7 +24,12 @@ export function Movie({ data }) {
         </a>
       </h3>
 
-      <Image src={data.Poster} width={150} height={225} />
+      <Image
+        src={data.Poster}
+        width={150}
+        height={225}
+        onClick={handleImageClick}
+      />
     </div>
   );
 }

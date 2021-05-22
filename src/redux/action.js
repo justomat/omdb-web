@@ -1,5 +1,7 @@
 export const SEARCH_MOVIES = "SEARCH_MOVIES";
 export const GET_MOVIE = "GET_MOVIES";
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
 
 export const searchMovies = (keyword, page) => ({
   type: SEARCH_MOVIES,
@@ -26,4 +28,13 @@ export const getMovie = (id) => ({
     cache: true,
     requestKey: id,
   },
+});
+
+export const openModal = (url) => ({
+  type: OPEN_MODAL,
+  payload: { url },
+});
+
+export const closeModal = () => ({
+  type: CLOSE_MODAL,
 });
