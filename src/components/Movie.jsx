@@ -25,7 +25,9 @@ export function Movie({ data }) {
       </h3>
 
       <Image
-        src={data.Poster}
+        src={
+          data.Poster === "N/A" ? "http://placehold.it/150x225" : data.Poster
+        }
         width={150}
         height={225}
         onClick={handleImageClick}

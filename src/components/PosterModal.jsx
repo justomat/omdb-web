@@ -24,7 +24,15 @@ export default function PosterModal({ selectedPoster }) {
     <ReactModal isOpen={selectedPoster !== ""} style={customStyles}>
       <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
         {selectedPoster ? (
-          <Image src={selectedPoster} width={300} height={444} />
+          <Image
+            src={
+              selectedPoster === "N/A"
+                ? "http://placehold.it/150x225"
+                : selectedPoster
+            }
+            width={300}
+            height={444}
+          />
         ) : null}
         <button onClick={close}>close</button>
       </div>
