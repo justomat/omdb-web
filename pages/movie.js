@@ -4,22 +4,30 @@ import { getMovie, GET_MOVIE } from "../src/redux/action";
 
 function render(key, value) {
   if (key === "Response") return null;
+
+  let content = null;
   switch (typeof value) {
     case "string":
-      return (
-        <tr>
-          <th>{key}</th>
-          <td>{key === "Poster" ? <a href={value} target="_blank">see</a> : value}</td>
-        </tr>
-      );
+      if (key === "Poster") {
+        content = (
+          <a href={value} target="_blank">
+            see
+          </a>
+        );
+      } else {
+        content = value;
+      }
+      break;
     case "object":
-      return (
-        <tr>
-          <th>{key}</th>
-          <td>{value.map((s) => Object.values(s).join("=")).join(", ")}</td>
-        </tr>
-      );
+      content = value.map((s) => Object.values(s).join("=")).join(", ");
+      break;
   }
+  return (
+    <tr key={key}>
+      <th>{key}</th>
+      <td>{content}</td>
+    </tr>
+  );
 }
 
 export default function MoviePage() {
@@ -36,5 +44,9 @@ export default function MoviePage() {
 
   if (error) return error;
   if (loading || data == null) return "Loading...";
-  return <table>{Object.entries(data).map((m) => render(...m))}</table>;
+  return (
+    <table>
+      <tbody>{Object.entries(data).map((m) => render(...m))}</tbody>
+    </table>
+  );
 }
