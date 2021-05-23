@@ -12,6 +12,8 @@
     "@redux-requests/core": "^1.6.2",
     "@redux-requests/react": "^1.6.1",
     "axios": "^0.21.1",
+    "lodash.throttle": "^4.1.1",
+    "lodash.uniq": "^4.5.0",
     "next": "10.2.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
