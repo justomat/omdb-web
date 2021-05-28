@@ -1,10 +1,15 @@
-import { Provider } from "react-redux";
-import store from "../src/redux/store";
+import ReduxProvider from "../src/redux/provider";
+
+function Providers({ children }) {
+  return <ReduxProvider>{children}</ReduxProvider>;
+}
 
 function MyApp({ Component, pageProps }) {
-  return <Provider store={store}>
-    <Component {...pageProps} />
-  </Provider>;
+  return (
+    <Providers>
+      <Component {...pageProps} />
+    </Providers>
+  );
 }
 
 export default MyApp;
