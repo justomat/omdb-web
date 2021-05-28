@@ -30,8 +30,6 @@ export default function SearchPage() {
       <main>
         <MovieList keyword={s} />
       </main>
-
-      <footer></footer>
     </>
   );
 }

@@ -26,8 +26,6 @@ export default function Home() {
       <main>
         <MovieList keyword="Batman" />
       </main>
-
-      <footer></footer>
     </>
   );
 }
