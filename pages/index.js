@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useCallback, useRef } from "react";
 import MovieList from "../src/components/MovieList";
+import SearchForm from "../src/components/SearchForm";
 
 export default function Home() {
   const input = useRef(null);
@@ -19,8 +20,7 @@ export default function Home() {
 
       <nav style={{ display: "inline", flexDirection: "row" }}>
         <h1>Home</h1>
-        <input ref={input} />
-        <button onClick={search}>search</button>
+        <SearchForm />
       </nav>
 
       <main>
