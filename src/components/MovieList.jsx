@@ -1,12 +1,12 @@
 import { useQuery } from "@redux-requests/react";
 import uniq from "lodash.uniq";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 import { searchMovies, SEARCH_MOVIES } from "../redux/action";
 import { Movie } from "./Movie";
 import PosterModal from "./PosterModal";
+import { ScrollTrigger } from "./ScrollTrigger";
 
 ReactModal.setAppElement("#__next");
 
@@ -33,10 +33,6 @@ export default function MovieList({ keyword, page: pageProp = 1 }) {
     if (lastPage === -1 || page <= lastPage) fetchNextPage();
   }, [keyword, page]);
 
-  // infinite scroll
-  const loader = useRef(null);
-  useInfiniteScroll(loader, () => setPage((p) => p + 1));
-
   // poster popup
   const { selectedPoster } = useSelector((state) => state.modal);
 
@@ -52,7 +48,7 @@ export default function MovieList({ keyword, page: pageProp = 1 }) {
           <Movie key={m.imdbID} data={m} />
         ))}
       </div>
-      <div ref={loader} />
+      <ScrollTrigger onReached={() => setPage((p) => p + 1)}/>
     </>
   );
 }
