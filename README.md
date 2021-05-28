@@ -1,3 +1,8 @@
+# Logic Test
+
+To run the anagram test, hit `localhost:3000/logic-test`.
+source code is in `pages/api/logic-test.js`
+
 # Assumptions
 
 1. features:
