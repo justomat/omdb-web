@@ -12,8 +12,13 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    padding: 12,
+  },
+  overlay: {
+    backgroundColor: "rgba(0,0,0, 0.7)",
   },
 };
+
 export default function PosterModal({ selectedPoster }) {
   const dispatch = useDispatch();
   const close = useCallback(() => {
@@ -23,6 +28,12 @@ export default function PosterModal({ selectedPoster }) {
   return (
     <ReactModal isOpen={selectedPoster !== ""} style={customStyles}>
       <div style={{ display: "flex", flex: 1, flexDirection: "column" }}>
+        <button
+          style={{ alignSelf: "flex-end", marginBottom: 8 }}
+          onClick={close}
+        >
+          close
+        </button>
         {selectedPoster ? (
           <Image
             src={
@@ -34,7 +45,6 @@ export default function PosterModal({ selectedPoster }) {
             height={444}
           />
         ) : null}
-        <button onClick={close}>close</button>
       </div>
     </ReactModal>
   );
